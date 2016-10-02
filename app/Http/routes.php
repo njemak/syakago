@@ -12,6 +12,7 @@
 */
 
 use App\Task;
+use App\TTP;
 use Illuminate\Http\Request;
 
 Route::group(['middleware' => ['web']], function () {
@@ -21,6 +22,14 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/', function () {
         return view('tasks', [
             'tasks' => Task::orderBy('created_at', 'asc')->get()
+        ]);
+    });
+
+    Route::get('/ttp_list', function () {
+        return view('TTP', [
+            'TTP' => TTP::orderBy('ADMIN_REMARK', 'desc')
+            ->orderBy('DELIVERY_DATE', 'desc')
+            ->get()
         ]);
     });
 

@@ -16,3 +16,9 @@ $factory->define(App\Task::class, function (Faker\Generator $faker) {
         'name' => $faker->title,
     ];
 });
+
+$factory->define(App\TTP::class, function (Faker\Generator $faker) {
+    return [
+        'TTP_NO' => $faker->title,
+    ];
+});
