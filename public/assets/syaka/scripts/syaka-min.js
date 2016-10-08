@@ -1,0 +1,1 @@
+$(document).ready(function(){$(".date-picker").datepicker({})}),$(function(){$.fn.sortList=function(){var t=$(this),e=$("li",t).get();e.sort(function(t,e){var n=$(t).text().toUpperCase(),i=$(e).text().toUpperCase();return n<i?-1:1}),$.each(e,function(e,n){t.append(n)})},$("#list-pages").sortList()});
