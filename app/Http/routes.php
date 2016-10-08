@@ -123,6 +123,8 @@ Route::group(['middleware' => ['web']], function () {
         $ttp->DELIVERY_DETAIL = $request->DELIVERY_DETAIL;
         $ttp->TOTAL_WEIGHT = 4;
         $ttp->CREATED_BY = "Fadhiel Alie";
+        $ttp->DELIVERY_STATUS = "Pending";
+        $ttp->PROOF_OF_DELIVERY = "Pending";
         $ttp->save();
 
         $ttpno = Ttpno::find(1);
