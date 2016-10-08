@@ -1,0 +1,10 @@
+{
+	"version": 3,
+	"file": "syaka.css",
+	"sources": [
+		"syaka.scss",
+		"_component.scss"
+	],
+	"mappings": "",
+	"names": []
+}

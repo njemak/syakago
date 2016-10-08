@@ -48,7 +48,12 @@ return [
 
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => env('DB_HOST', '202.150.209.249'),
+            // 'host'      => env('DB_HOST', 'localhost'),
+            // 'unix_socket'   => '/Applications/MAMP/tmp/mysql/mysql.sock',
+            // 'database'  => env('DB_DATABASE', 'syakago'),
+            // 'username'  => env('DB_USERNAME', 'njemak2'),
+            // 'password'  => env('DB_PASSWORD', 'dika18()'),
+            'host'      => env('DB_HOST', 'syaka-go.com'),
             'database'  => env('DB_DATABASE', 'u4866460_syakaDB'),
             'username'  => env('DB_USERNAME', 'u4866460_admin'),
             'password'  => env('DB_PASSWORD', '1234@syakago'),
