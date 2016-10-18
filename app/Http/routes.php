@@ -13,7 +13,6 @@
 
 use App\Task;
 use App\Ttp;
-use App\Ttpno;
 use Illuminate\Http\Request;
 
 Route::group(['middleware' => ['web']], function () {
@@ -23,8 +22,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/', function () {
 
         return view('ttp_list', [
-        'ttp_list' => Ttp::all()
-    ]);
+            'ttp_list' => Ttp::all()
+            ]);
         
     });
 
@@ -38,40 +37,22 @@ Route::group(['middleware' => ['web']], function () {
 
         return view('tasks', [
             'tasks' => Task::orderBy('created_at', 'asc')->get()
-        ]);
+            ]);
     });
 
     Route::get('add_ttp', function () {
 
-        $ttpnonow = Ttpno::all();
+        $ttpid = Ttp::orderBy('created_at', 'desc')->limit(1)->select('TTP_NO')->get();
 
-        if (date("Y") == $ttpnonow[0]->year){
-            $year = $ttpnonow[0]->year;
+        $ttpidnow = $ttpid[0]->TTP_NO;
 
-            $yearstring = "$year";
+        $ttpno = intval($ttpidnow);
 
-            $yearstring = substr($yearstring, -2); 
+        $ttpno = ($ttpno+1);
 
-            $id = $ttpnonow[0]->index;
-
-            $idstring = "$id";
-
-            while(strlen($idstring) < 6) {
-                $idstring = "0" . $idstring;
-            } 
-
-            $yearstring .= $idstring;
-
-            return view('add_ttp', [
-            'ttpno' => $yearstring
+        return view('add_ttp', [
+            'ttpno' => $ttpno
             ]);
-        }else{
-            return "error bok";
-        }
-
-
-        
-
 
     });
 
@@ -79,31 +60,18 @@ Route::group(['middleware' => ['web']], function () {
      * Add New Task
      */
     Route::post('add_ttp_post', function (Request $request) {
-        // $validator = Validator::make($request->all(), [
-        //     'name' => 'required|max:255',
-        // ]);
-
-        // if ($validator->fails()) {
-        //     return redirect('add_ttp')
-        //         ->withInput()
-        //         ->withErrors($validator);
-        // }
-
-        // $ttp = new Ttp;
-        // $task->name = $request->name;
-        // $task->save();
 
         $validator = Validator::make($request->all(), [
             'DELIVERY_DATE' => 'required|max:255',
             'ORIGIN_ADDRESS' => 'required|max:255',
             'DESTINATION_ADDRESS' => 'required|max:255'
 
-        ]);
+            ]);
 
         if ($validator->fails()) {
             return redirect('add_ttp')
-                ->withInput()
-                ->withErrors($validator);
+            ->withInput()
+            ->withErrors($validator);
         }
 
         $format = 'm/d/Y';
@@ -144,12 +112,12 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/task', function (Request $request) {
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
-        ]);
+            ]);
 
         if ($validator->fails()) {
             return redirect('ttp_list')
-                ->withInput()
-                ->withErrors($validator);
+            ->withInput()
+            ->withErrors($validator);
         }
 
         $task = new Task;
