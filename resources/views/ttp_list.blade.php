@@ -19,160 +19,263 @@
                 <!-- END PAGE BAR -->
                 <!-- BEGIN PAGE TITLE-->
                 <h3 class="page-title"> List TTP
-                    <small>Semua TTP Bakal ada disini</small>
+                    <small>Menampilkan semua TTP</small>
                 </h3>
                 <!-- END PAGE TITLE-->
                 <!-- END PAGE HEADER-->
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="table-responsive">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center"> No TTP </th>
-                                        <th class="text-center"> Nama Pelanggan </th>
-                                        <th class="text-center"> Tanggal Pengiriman </th>
-                                        <th class="text-center"> Asal Pengiriman </th>
-                                        <th class="text-center"> Tujuan Pengiriman </th>
-                                        <th class="text-center"> Status Pengiriman </th>
-                                        <th class="text-center"> Status POD </th>
-                                    </tr>
-                                </thead>
-                                <tbody class="text-center">
-                                    <tr>
-                                        <td><a href="#"> 1600006 </a></td>
-                                        <td> PT East West Seed </td>
-                                        <td> 19-02-2016 </td>
-                                        <td> JKT </td>
-                                        <td> SUB </td>
-                                        <td class="font-yellow-lemon"> Pending </td>
-                                        <td class="font-yellow-lemon"> Pending </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#"> 1600005 </a></td>
-                                        <td> PT East West Seed </td>
-                                        <td> 17-02-2016 </td>
-                                        <td> JKT </td>
-                                        <td> SUB </td>
-                                        <td class="font-yellow-lemon"> Pending </td>
-                                        <td class="font-yellow-lemon"> Pending </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#"> 1600004 </a></td>
-                                        <td> PT East West Seed </td>
-                                        <td> 11-02-2016 </td>
-                                        <td> JKT </td>
-                                        <td> SUB </td>
-                                        <td class="font-yellow-lemon"> Pending </td>
-                                        <td class="font-yellow-lemon"> Pending </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#"> 1600003 </a></td>
-                                        <td> DHL Supply Chain </td>
-                                        <td> 14-01-2016 </td>
-                                        <td> JKT </td>
-                                        <td> SUB </td>
-                                        <td class="font-green-meadow"> Delivered </td>
-                                        <td class="font-yellow-lemon"> Pending </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#"> 1600006 </a></td>
-                                        <td> DHL Supply Chain </td>
-                                        <td> 19-2-2016 </td>
-                                        <td> JKT </td>
-                                        <td> SUB </td>
-                                        <td class="font-yellow-lemon"> Pending </td>
-                                        <td class="font-yellow-lemon"> Pending </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#"> 1600006 </a></td>
-                                        <td> PT East West Seed </td>
-                                        <td> 19-2-2016 </td>
-                                        <td> JKT </td>
-                                        <td> SUB </td>
-                                        <td class="font-yellow-lemon"> Pending </td>
-                                        <td class="font-yellow-lemon"> Pending </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#"> 1600006 </a></td>
-                                        <td> PT East West Seed </td>
-                                        <td> 19-2-2016 </td>
-                                        <td> JKT </td>
-                                        <td> PAD </td>
-                                        <td class="font-yellow-lemon"> Pending </td>
-                                        <td class="font-yellow-lemon"> Pending </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#"> 1600006 </a></td>
-                                        <td> DHL Supply Chain </td>
-                                        <td> 19-2-2016 </td>
-                                        <td> JKT </td>
-                                        <td> SUB </td>
-                                        <td class="font-yellow-lemon"> Pending </td>
-                                        <td class="font-yellow-lemon"> Pending </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#"> 1600006 </a></td>
-                                        <td> DHL Supply Chain </td>
-                                        <td> 19-2-2016 </td>
-                                        <td> JKT </td>
-                                        <td> DEP </td>
-                                        <td class="font-green-meadow"> Delivered </td>
-                                        <td class="font-green-meadow"> Received </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#"> 1600006 </a></td>
-                                        <td> DHL Supply Chain </td>
-                                        <td> 19-2-2016 </td>
-                                        <td> JKT </td>
-                                        <td> PKU </td>
-                                        <td class="font-green-meadow"> Delivered </td>
-                                        <td class="font-green-meadow"> Received </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#"> 1600006 </a></td>
-                                        <td> PT East West Seed </td>
-                                        <td> 19-2-2016 </td>
-                                        <td> JKT </td>
-                                        <td> SUB </td>
-                                        <td class="font-green-meadow"> Delivered </td>
-                                        <td class="font-green-meadow"> Received </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <div class="text-center">
-                                <ul class="pagination pagination">
-                                    <li>
-                                        <a href="javascript:;">
-                                            <i class="fa fa-angle-left"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;"> 1 </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;"> 2 </a>
-                                    </li>
-                                    <li class="active">
-                                        <a href="javascript:;"> 3 </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;"> 4 </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;"> 5 </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;"> 6 </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;">
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+                    <div class="col-xs-2">
+                        <div class="form-group">
+                            <select class="form-control">
+                                <option>2016</option>
+                                <option>2015</option>
+                                <option>2014</option>
+                                <option>Option 4</option>
+                                <option>Option 5</option>
+                            </select>
                         </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
+                            <thead class="text-center">
+                                <tr>
+                                    <th> No TTP </th>
+                                    <th> Nama Pelanggan </th>
+                                    <th> Tanggal Pengiriman </th>
+                                    <th> Asal Pengiriman </th>
+                                    <th> Tujuan Pengiriman </th>
+                                    <th> Status Pengiriman </th>
+                                    <th> Status POD </th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                <tr class="odd gradeX">
+                                    <td><a href="#"> 1600006 </a></td>
+                                    <td> PT.DHL Express </td>
+                                    <td> 19-05-2016 </td>
+                                    <td> JKT </td>
+                                    <td> DPK </td>
+                                    <td class="font-green-meadow"> Delivered </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                </tr>
+                                <tr class="odd gradeX">
+                                    <td><a href="#"> 1600022 </a></td>
+                                    <td> PT.DHL Express </td>
+                                    <td> 19-05-2016 </td>
+                                    <td> JKT </td>
+                                    <td> DPK </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                </tr>
+                                <tr class="odd gradeX">
+                                    <td><a href="#"> 1600006 </a></td>
+                                    <td> TIKI JNE </td>
+                                    <td> 19-05-2016 </td>
+                                    <td> JKT </td>
+                                    <td> DPK </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                </tr>
+                                <tr class="odd gradeX">
+                                    <td><a href="#"> 1600006 </a></td>
+                                    <td> TIKI JNE </td>
+                                    <td> 19-05-2016 </td>
+                                    <td> JKT </td>
+                                    <td> DPK </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                </tr>
+                                <tr class="odd gradeX">
+                                    <td><a href="#"> 1600006 </a></td>
+                                    <td> PT LION EXPRESS </td>
+                                    <td> 19-05-2016 </td>
+                                    <td> JKT </td>
+                                    <td> DPK </td>
+                                    <td class="font-green-meadow"> Delivered </td>
+                                    <td class="font-green-meadow"> Received </td>
+                                </tr>
+                                <tr class="odd gradeX">
+                                    <td><a href="#"> 1600006 </a></td>
+                                    <td> PT TIKI JNE </td>
+                                    <td> 19-02-2016 </td>
+                                    <td> JKT </td>
+                                    <td> DPK </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                </tr>
+                                <tr class="odd gradeX">
+                                    <td><a href="#"> 1600006 </a></td>
+                                    <td> PT East West Seed </td>
+                                    <td> 19-02-2016 </td>
+                                    <td> JKT </td>
+                                    <td> DPK </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                </tr>
+                                <tr class="odd gradeX">
+                                    <td><a href="#"> 1600006 </a></td>
+                                    <td> PT Madfaka </td>
+                                    <td> 19-02-2016 </td>
+                                    <td> JKT </td>
+                                    <td> DPK </td>
+                                    <td class="font-green-meadow"> Delivered </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                </tr>
+                                <tr class="odd gradeX">
+                                    <td><a href="#"> 1600006 </a></td>
+                                    <td> PT Kupi </td>
+                                    <td> 19-02-2016 </td>
+                                    <td> JKT </td>
+                                    <td> DPK </td>
+                                    <td class="font-green-meadow"> Delivered </td>
+                                    <td class="font-green-meadow"> Received </td>
+                                </tr>
+                                <tr class="odd gradeX">
+                                    <td><a href="#"> 1600006 </a></td>
+                                    <td> PT Kupi </td>
+                                    <td> 19-02-2016 </td>
+                                    <td> JKT </td>
+                                    <td> DPK </td>
+                                    <td class="font-green-meadow"> Delivered </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                </tr>
+                                <tr class="odd gradeX">
+                                    <td><a href="#"> 1600006 </a></td>
+                                    <td> PT Ptah </td>
+                                    <td> 19-05-2016 </td>
+                                    <td> JKT </td>
+                                    <td> DPK </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                </tr>
+                                <tr class="odd gradeX">
+                                    <td><a href="#"> 1600006 </a></td>
+                                    <td> PT Ptah </td>
+                                    <td> 19-05-2016 </td>
+                                    <td> JKT </td>
+                                    <td> SOL </td>
+                                    <td class="font-green-meadow"> Delivered </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                </tr>
+                                <tr class="odd gradeX">
+                                    <td><a href="#"> 1600006 </a></td>
+                                    <td> PT TIKI JNE </td>
+                                    <td> 19-02-2016 </td>
+                                    <td> JKT </td>
+                                    <td> SOL </td>
+                                    <td class="font-green-meadow"> Delivered </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                </tr>
+                                <tr class="odd gradeX">
+                                    <td><a href="#"> 1600006 </a></td>
+                                    <td> PT East West Seed </td>
+                                    <td> 19-02-2016 </td>
+                                    <td> JKT </td>
+                                    <td> DPK </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                </tr>
+                                <tr class="odd gradeX">
+                                    <td><a href="#"> 160011 </a></td>
+                                    <td> PT Clint East Wood </td>
+                                    <td> 19-02-2016 </td>
+                                    <td> JKT </td>
+                                    <td> DPK </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                </tr>
+                                <tr class="odd gradeX">
+                                    <td><a href="#"> 1600006 </a></td>
+                                    <td> PT Dono </td>
+                                    <td> 19-05-2016 </td>
+                                    <td> JKT </td>
+                                    <td> DPK </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                </tr>
+                                <tr class="odd gradeX">
+                                    <td><a href="#"> 1600006 </a></td>
+                                    <td> PT Clint East Wood </td>
+                                    <td> 19-05-2016 </td>
+                                    <td> JKT </td>
+                                    <td> DPK </td>
+                                    <td class="font-green-meadow"> Delivered </td>
+                                    <td class="font-green-meadow"> Received </td>
+                                </tr>
+                                <tr class="odd gradeX">
+                                    <td><a href="#"> 1600006 </a></td>
+                                    <td> PT Jumobo </td>
+                                    <td> 19-02-2016 </td>
+                                    <td> JKT </td>
+                                    <td> DPK </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                </tr>
+                                <tr class="odd gradeX">
+                                    <td><a href="#"> 1600006 </a></td>
+                                    <td> PT Clint East Wood </td>
+                                    <td> 19-02-2016 </td>
+                                    <td> JKT </td>
+                                    <td> DPK </td>
+                                    <td class="font-green-meadow"> Delivered </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                </tr>
+                                <tr class="odd gradeX">
+                                    <td><a href="#"> 1600006 </a></td>
+                                    <td> PT Tiki JNE </td>
+                                    <td> 19-02-2016 </td>
+                                    <td> JKT </td>
+                                    <td> DPK </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                </tr>
+                                <tr class="odd gradeX">
+                                    <td><a href="#"> 1600006 </a></td>
+                                    <td> PT LION EXPRESS </td>
+                                    <td> 19-05-2016 </td>
+                                    <td> JKT </td>
+                                    <td> DPK </td>
+                                    <td class="font-green-meadow"> Delivered </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                </tr>
+                                <tr class="odd gradeX">
+                                    <td><a href="#"> 1600006 </a></td>
+                                    <td> PT TIKI JNE </td>
+                                    <td> 19-05-2016 </td>
+                                    <td> JKT </td>
+                                    <td> DPK </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                </tr>
+                                <tr class="odd gradeX">
+                                    <td><a href="#"> 1600006 </a></td>
+                                    <td> PT TIKI JNE </td>
+                                    <td> 19-02-2016 </td>
+                                    <td> JKT </td>
+                                    <td> DPK </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                </tr>
+                                <tr class="odd gradeX">
+                                    <td><a href="#"> 1600006 </a></td>
+                                    <td> PT Clint East Wood </td>
+                                    <td> 19-02-2016 </td>
+                                    <td> JKT </td>
+                                    <td> DPK </td>
+                                    <td class="font-green-meadow"> Delivered </td>
+                                    <td class="font-green-meadow"> Received </td>
+                                </tr>
+                                <tr class="odd gradeX">
+                                    <td><a href="#"> 1600006 </a></td>
+                                    <td> PT East West Seed </td>
+                                    <td> 19-02-2016 </td>
+                                    <td> JKT </td>
+                                    <td> DPK </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                    <td class="font-yellow-lemon"> Pending </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

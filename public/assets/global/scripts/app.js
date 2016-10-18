@@ -94,6 +94,7 @@ var App = function() {
         $('body').on('click', '.portlet > .portlet-title > .tools > a.remove', function(e) {
             e.preventDefault();
             var portlet = $(this).closest(".portlet");
+            var portletWrapper = portlet.closest(".col-md-6");
 
             if ($('body').hasClass('page-portlet-fullscreen')) {
                 $('body').removeClass('page-portlet-fullscreen');
@@ -105,6 +106,7 @@ var App = function() {
             portlet.find('.portlet-title > .tools > .config').tooltip('destroy');
             portlet.find('.portlet-title > .tools > .collapse, .portlet > .portlet-title > .tools > .expand').tooltip('destroy');
 
+            portletWrapper.remove();
             portlet.remove();
         });
 
