@@ -34,151 +34,82 @@
                                         <div class="form-group">
                                             <label class="control-label">No TTP</label>
                                             <input type="text" id="nomorTTP" class="form-control" name="TTP_NO" value="{{$ttp_info->TTP_NO}}" readonly>
-                                            <!-- <span class="help-block"> This is inline help </span> -->
                                         </div>
                                     </div>
-                                   
+                                   <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">No MR</label>
+                                            <input type="text" id="MRNo" class="form-control" name="MR_NO" value="{{$ttp_info->MR_NO}}" readonly>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label class="control-label">Customer Name</label>
-                                            <select class="form-control" name="CUSTOMER_ID">
-                                                <option>DHL Supply Chain</option>
-                                                <option>Option 2</option>
-                                                <option>Option 3</option>
-                                                <option>Option 4</option>
-                                                <option>Option 5</option>
-                                            </select>
+                                            <input type="text" id="customerName" class="form-control" name="CUSTOMER_ID" value="{{$ttp_info->CUSTOMER_ID}}" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="control-label">Project Name</label>
-                                            <select class="form-control" name="PROJECT_ID">
-                                                <option>Penyelundupan Sony Ericson</option>
-                                                <option>Option 2</option>
-                                                <option>Option 3</option>
-                                                <option>Option 4</option>
-                                                <option>Option 5</option>
-                                            </select>
+                                            <input type="text" id="projectName" class="form-control" name="PROJECT_ID" value="{{$ttp_info->PROJECT_ID}}" readonly>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label class="control-label">No MR</label>
-                                            <input type="text" id="lastName" class="form-control" placeholder="Lim" name="MR_NO">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Delivery Date</label>
-                                            <input class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" name="DELIVERY_DATE"/>
+                                            <input type="text" id="deliveryDate" class="form-control" name="DELIVERY_DATE" value="{{$ttp_info->DELIVERY_DATE}}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Picked Up By</label>
+                                            <input type="text" id="pickup" class="form-control" name="PICKED_UP_BY" value="{{$ttp_info->PICKED_UP_BY}}" readonly>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label class="control-label">Picked Up By</label>
-                                            <input type="text" id="pickedUp" class="form-control" placeholder="Name of person" name="PICKED_UP_BY" />
+                                            <label class="control-label">Origin Address</label>
+                                            <textarea class="form-control" rows="3" name="ORIGIN_ADDRESS" readonly>
+                                                {{$ttp_info->ORIGIN_CODE}}
+                                                {{$ttp_info->ORIGIN_ADDRESS}}
+                                            </textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Destination Address</label>
+                                            <textarea class="form-control" rows="3" name="DESTINATION_ADDRESS" readonly>
+                                                {{$ttp_info->DESTINATION_CODE}}
+                                                {{$ttp_info->DESTINATION_ADDRESS}}
+                                            </textarea>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-5">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <label class="control-label">Origin Address</label>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <select class="form-control" name="ORIGIN_CODE">
-                                                        <option>JKT</option>
-                                                        <option>Option 2</option>
-                                                        <option>Option 3</option>
-                                                        <option>Option 4</option>
-                                                        <option>Option 5</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <div class="form-group">
-                                                    <textarea class="form-control" rows="3" name="ORIGIN_ADDRESS"></textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <label class="control-label">Destination Address</label>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <select class="form-control" name="DESTINATION_CODE">
-                                                        <option>CGK</option>
-                                                        <option>Option 2</option>
-                                                        <option>Option 3</option>
-                                                        <option>Option 4</option>
-                                                        <option>Option 5</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <div class="form-group">
-                                                    <textarea class="form-control" rows="3" name="DESTINATION_ADDRESS"></textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--/row-->
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label class="control-label">Delivery By</label>
-                                            <select class="form-control" name="DELIVERY_BY">
-                                                <option>Darat</option>
-                                                <option>Option 2</option>
-                                                <option>Option 3</option>
-                                                <option>Option 4</option>
-                                                <option>Option 5</option>
-                                            </select>
+                                            <input type="text" id="deliveryBy" class="form-control" name="DELIVERY_BY" value="{{$ttp_info->DELIVERY_BY}}" readonly>
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label class="control-label">Form</label>
-                                            <select class="form-control" name="DELIVERY_FORM">
-                                                <option>Vehicle</option>
-                                                <option>Option 2</option>
-                                                <option>Option 3</option>
-                                                <option>Option 4</option>
-                                                <option>Option 5</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="control-label">Delivery Detail</label>
-                                            <select class="form-control" name="DELIVERY_DETAIL">
-                                                <option>Regular</option>
-                                                <option>Option 2</option>
-                                                <option>Option 3</option>
-                                                <option>Option 4</option>
-                                                <option>Option 5</option>
-                                            </select>
+                                            <input type="text" id="deliveryDetail" class="form-control" name="DELIVERY_DETAIL" value="{{$ttp_info->DELIVERY_DETAIL}}" readonly>
                                         </div>
                                     </div>
                                 </div>
                                 <h3 class="form-section">Package Info</h3>
+                                <!-- DEVELOPER NOTE: YOVIE  (01-11-2016)
+                                FOR EACH PACKAGE TTP; ITERATE THROUGH THE INFORMATION
+                                PACKAGE INFORMATION IS CURRENTLY NOT AVAILABLE
+                                -->
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="portlet box blue">
@@ -222,6 +153,27 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <!-- DEVELOPER NOTE: YOVIE  (01-11-2016)
+                                    TOTAL WEIGHT DEPENDS ON DELIVERY TYPE? FORMULA? I FORGOT!
+                                    -->
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="control-label">Total Weight</label>
+                                            <input type="text" id="totalWeight" class="form-control" name="TOTAL_WEIGHT" value="{{$ttp_info->TOTAL_WEIGHT}}" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="control-label">Ops Notes</label>
+                                            <textarea class="form-control" rows="3" name="ADMIN_REMARK" readonly>
+                                                {{$ttp_info->ADMIN_REMARK}}
+                                            </textarea>
                                         </div>
                                     </div>
                                 </div>
