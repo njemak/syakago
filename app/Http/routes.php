@@ -23,8 +23,15 @@ Route::group(['middleware' => ['web']], function () {
 
         return view('ttp_list', [
             'ttp_list' => Ttp::all()
-            ]);
-        
+            ]);   
+    });
+
+    Route::get('ttp_price/{ttp_id}', function ($ttp_id) {
+
+        return view('ttp_price', [
+            'ttp_info' => Ttp::where('TTP_NO', $ttp_id)->first()
+            // 'ttp_info' => Ttp::where('TTP_NO', $ttp_id)->get()
+            ]);   
     });
 
     Route::get('array_ttp', function () {
