@@ -48,11 +48,15 @@ class CustomerController extends Controller
       */
 
 		if($request->CUSTOMER_ID!=null){
-			$customer = Customer::where('CUSTOMER_ID', $request->CUSTOMER_ID)->first();
+		//	$customer = Customer::where('CUSTOMER_ID', $request->CUSTOMER_ID)->first();
+			$customer = Customer::find($request->CUSTOMER_ID);
+
 		//	echo "a";
 		}
-		else {
+		else{
 			$customer = new Customer;	
+		}
+			
 			$customer->CUSTOMER_NAME = $request->CUSTOMER_NAME;
 	 		$customer->CUSTOMER_ADDRESS = $request->CUSTOMER_ADDRESS;
 	 		$customer->CUSTOMER_NO_PIUTANG = $request->CUSTOMER_NO_PIUTANG;
@@ -60,12 +64,8 @@ class CustomerController extends Controller
 	 		$customer->save();
 	 		
 	        return redirect('/customer');
-		}
-		
-		/*
  		
- 		
-        */
+        
    }
 
 
