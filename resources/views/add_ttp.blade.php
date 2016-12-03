@@ -28,7 +28,7 @@
                         <form action="{{ url('add_ttp_post')}}" method="POST" class="horizontal-form">
                         {{ csrf_field() }}
                             <div class="form-body">
-                                <h3 class="form-section">Customer Info</h3>
+                                <h3 class="form-section">TTP Details</h3>
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div class="form-group">
@@ -180,102 +180,90 @@
                                 </div>
                                 <h3 class="form-section">Package Info</h3>
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="portlet box blue">
-                                            <div class="portlet-title">
-                                                <div class="caption">
-                                                    <i class="fa fa-truck"></i>Package 1 </div>
-                                                <div class="tools">
-                                                    <a href="javascript:;" class="collapse" data-original-title="" title=""> </a>
-                                                    <a href="javascript:;" class="remove" data-original-title="" title=""> </a>
+                                    <div class="package-list">
+                                        <div data-repeater-list="group-a">
+                                            <div class="col-md-6 package-item" data-repeater-item>
+                                                <div class="portlet box blue">
+                                                    <div class="portlet-title">
+                                                        <div class="caption">
+                                                            <i class="fa fa-truck"></i>Package</div>
+                                                        <div class="tools">
+                                                            <a href="javascript:;" class="collapse" data-original-title="" title=""> </a>
+                                                            <a href="javascript:;" class="remove" data-repeater-delete data-original-title="" title=""> </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="portlet-body">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Nama Barang</label>
+                                                                    <input type="text" id="packageName1" class="form-control" placeholder="Nama Barang" name="NAME">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Type</label>
+                                                                    <select class="form-control" name="TYPE_VEHICLE">
+                                                                        <option>Wing Box</option>
+                                                                        <option>Option 2</option>
+                                                                        <option>Option 3</option>
+                                                                        <option>Option 4</option>
+                                                                        <option>Option 5</option>
+                                                                    </select>
+                                                                    <input type="hidden" class="form-control" name="TYPE" value="VEHICLE"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Quantity</label>
+                                                                    <input type="number" id="packageQuantity1" class="form-control" placeholder="Banyak Kendaraan" name="QUANTITY">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="portlet-body">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Nama Barang</label>
-                                                            <input type="text" id="packageName1" class="form-control" placeholder="Nama Barang" >
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Type</label>
-                                                            <select class="form-control">
-                                                                <option>Wing Box</option>
-                                                                <option>Option 2</option>
-                                                                <option>Option 3</option>
-                                                                <option>Option 4</option>
-                                                                <option>Option 5</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Quantity</label>
-                                                            <input type="number" id="packageQuantity1" class="form-control" placeholder="Banyak Kendaraan" >
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                        </div>
+                                        <div class="col-xs-12">
+                                            <div class="form-group">
+                                                <button type="button" data-repeater-create class="btn blue">
+                                                    <i class="fa fa-plus"></i> Tambah Package
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- <div class="col-md-6">
-                                        <div class="portlet box blue">
-                                            <div class="portlet-title">
-                                                <div class="caption">
-                                                    <i class="fa fa-ship"></i>Package 2 </div>
-                                                <div class="tools">
-                                                    <a href="javascript:;" class="collapse" data-original-title="" title=""> </a>
-                                                    <a href="javascript:;" class="remove" data-original-title="" title=""> </a>
-                                                </div>
-                                            </div>
-                                            <div class="portlet-body">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Nama Barang</label>
-                                                            <input type="text" id="packageName1" class="form-control" placeholder="Nama Barang" >
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Type</label>
-                                                            <select class="form-control">
-                                                                <option>Wing Box</option>
-                                                                <option>Option 2</option>
-                                                                <option>Option 3</option>
-                                                                <option>Option 4</option>
-                                                                <option>Option 5</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Quantity</label>
-                                                            <input type="number" id="packageQuantity1" class="form-control" placeholder="Banyak Kendaraan" >
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                </div>
+                                <h3 class="form-section">Total Weight</h3>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label"><strong>82Kg</strong></label>
                                         </div>
-                                    </div> -->
+                                    </div>
+                                </div>
+                                <h3 class="form-section">Notes</h3>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <ul>
+                                            <li>No SMU: 152345</li>
+                                            <li>Barang sudah dipickup pukul 09:00 AM</li>
+                                            <li>Barang sudah di bandara pukul 12:00 PM</li>
+                                            <li>Barang sudah tiba di tempat pukul 03:00 PM</li>
+                                        </ul>
+                                        <br><br>
+                                    </div>
                                 </div>
                             </div>
                             @include('common.errors')
 
                             <div class="form-actions right">
-                                <button type="button" class="btn default">Cancel</button>
+                                <button type="button" class="btn default">Batal</button>
                                 <button type="submit" class="btn blue">
-                                    <i class="fa fa-check"></i> Save
+                                    <i class="fa fa-check"></i> Simpan
                                 </button>
                             </div>
                         </form>

@@ -13,6 +13,7 @@
 
 use App\Task;
 use App\Ttp;
+use App\Package;
 use Illuminate\Http\Request;
 
 Route::group(['middleware' => ['web']], function () {
@@ -102,13 +103,23 @@ Route::group(['middleware' => ['web']], function () {
         $ttp->PROOF_OF_DELIVERY = "Pending";
         $ttp->save();
 
-        $ttpno = Ttpno::find(1);
+        $ttp_packages = $request->input('group-a');
 
-        $ttpno->index = (($ttpno->index)+1);
+        $njemak = array();
 
-        $ttpno->save();
+        foreach ($ttp_packages as $package) {
+            $packages = new Package;
+            $packages->TTP_NO = $request->TTP_NO;
+            $packages->ITEM = $package['NAME'];
+            $packages->QUANTITY = $package['QUANTITY'];
+            $packages->TYPE_VEHICLE = $package['TYPE_VEHICLE'];
+            $packages->TYPE = 'VEHICLE';
+            $packages->save();
+            
+        }
 
         return redirect('/');
+
     });
 
 
