@@ -17,15 +17,24 @@ use App\Package;
 use App\Customer;
 use App\Project;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 Route::group(['middleware' => ['web']], function () {
     /**
      * Show Task Dashboard
      */
     Route::get('/', function () {
-
+        $now = Carbon::now();
         return view('ttp_list', [
-            'ttp_list' => Ttp::all() //SET GET YEAR (CURRENT YEAR)
+            // 'ttp_list' => Ttp::all() //SET GET YEAR (CURRENT YEAR)
+            'ttp_list' => Ttp::whereYear('created_at', '=', $now->year)->get()
+            ]);   
+    });
+
+    Route::get('/ttp_list/{year}', function ($year) {
+        return view('ttp_list', [
+            'ttp_list' => Ttp::whereYear('created_at', '=', $year)->get(),
+            'current_year' => $year
             ]);   
     });
 
@@ -43,12 +52,12 @@ Route::group(['middleware' => ['web']], function () {
         
     });
 
-    Route::get('ttp_list', function () {
+    // Route::get('ttp_list', function () {
 
-        return view('tasks', [
-            'tasks' => Task::orderBy('created_at', 'asc')->get()
-            ]);
-    });
+    //     return view('tasks', [
+    //         'tasks' => Task::orderBy('created_at', 'asc')->get()
+    //         ]);
+    // });
 
     Route::get('add_ttp', function () {
 
