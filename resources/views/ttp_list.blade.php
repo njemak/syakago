@@ -27,11 +27,12 @@
                 <div class="row">
                     <div class="col-xs-2">
                         <div class="form-group">
-                            <select class="form-control">
+                            <select class="form-control"> 
                                 @for ($year = date("Y"); $year >= 2014; $year--)
                                     <option>{{ $year }}</option>
                                 @endfor
                             </select>
+                            <!-- ONCHANGE REDIRECT RELOAD TTP($YEAR) -->
                         </div>
                     </div>
                     <div class="col-xs-12">
@@ -70,7 +71,7 @@
                                         @endforeach
                                     </tbody>
                                     </table>
-                                    <div class="text-center">
+                                    <!-- <div class="text-center">
                                         <ul class="pagination pagination">
                                             <li>
                                                 <a href="javascript:;">
@@ -101,7 +102,7 @@
                                                 </a>
                                             </li>
                                         </ul>
-                                    </div>
+                                    </div> -->
                                 @else
                                     </table>
                                     <h3 class="text-center"> No TTP Found

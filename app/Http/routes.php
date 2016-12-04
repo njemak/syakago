@@ -23,7 +23,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/', function () {
 
         return view('ttp_list', [
-            'ttp_list' => Ttp::all()
+            'ttp_list' => Ttp::all() //SET GET YEAR (CURRENT YEAR)
             ]);   
     });
 
