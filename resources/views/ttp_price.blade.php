@@ -105,6 +105,38 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label id="warning" style="color:red; display:none">value is not valid</label>
+                                            <input type="text" class="form-control" id="teacher" type="text" />
+                                            <input type="text" class="form-control" id="info" type="text" readonly />
+                                        </div>
+                                    </div>
+                                </div>
+                                <script>
+                                    // $('#teacher').on('change', function(e){
+                                    //         var teacher = $('#teacher').val();
+                                    //         var info = '(' + teacher + ') value based on above.';
+                                    //         $('#info').val(info);
+                                    //     }
+                                    // );
+                                    $('#teacher').on('change', function(e){
+                                            var numberRegex = /^[+-]?\d+(\.\d+)?([eE][+-]?\d+)?$/;
+                                            var teacher = $('#teacher').val();
+                                            if(numberRegex.test(teacher)) {
+                                                var info = '(' + teacher * 2 + ') above * 2.'; 
+                                                $('#info').val(info);
+                                                $('#teacher').css('border-color', '');
+                                                $('#warning').hide();
+                                            }
+                                            else{
+                                                $('#warning').show();
+                                                $('#teacher').css('border-color', 'red');
+                                            }
+                                        }
+                                    );
+                                </script>
                                 <h3 class="form-section">Package Info</h3>
                                 <!-- DEVELOPER NOTE: YOVIE  (01-11-2016)
                                 FOR EACH PACKAGE TTP; ITERATE THROUGH THE INFORMATION
