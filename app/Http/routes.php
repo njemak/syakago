@@ -14,6 +14,8 @@
 use App\Task;
 use App\Ttp;
 use App\Package;
+use App\Customer;
+use App\Project;
 use Illuminate\Http\Request;
 
 Route::group(['middleware' => ['web']], function () {
@@ -52,6 +54,8 @@ Route::group(['middleware' => ['web']], function () {
 
         $ttpid = Ttp::orderBy('created_at', 'desc')->limit(1)->select('TTP_NO')->get();
 
+        $customer_list = Customer::all();
+
         $ttpidnow = $ttpid[0]->TTP_NO;
 
         $ttpidnowtwo = substr($ttpidnow, 0,2);
@@ -65,9 +69,22 @@ Route::group(['middleware' => ['web']], function () {
             $ttpno = $yearnow . "000001";
         }
         return view('add_ttp', [
-            'ttpno' => $ttpno
+            'ttpno' => $ttpno,
+            'customers' => $customer_list
             ]);
 
+    });
+
+    Route::get('customer_project/{customer_id}', function ($customer_id) {
+
+        $projects = Project::where('CUSTOMER_ID', $customer_id)->get();
+
+        return $projects;
+
+        // return view('ttp_price', [
+        //     'ttp_info' => Ttp::where('TTP_NO', $ttp_id)->first()
+        //     // 'ttp_info' => Ttp::where('TTP_NO', $ttp_id)->get()
+        //     ]);   
     });
 
     /**
@@ -75,18 +92,18 @@ Route::group(['middleware' => ['web']], function () {
      */
     Route::post('add_ttp_post', function (Request $request) {
 
-        // $validator = Validator::make($request->all(), [
-        //     'DELIVERY_DATE' => 'required|max:255',
-        //     'ORIGIN_ADDRESS' => 'required|max:255',
-        //     'DESTINATION_ADDRESS' => 'required|max:255'
+        $validator = Validator::make($request->all(), [
+            'DELIVERY_DATE' => 'required|max:255',
+            'ORIGIN_ADDRESS' => 'required|max:255',
+            'DESTINATION_ADDRESS' => 'required|max:255'
 
-        //     ]);
+            ]);
 
-        // if ($validator->fails()) {
-        //     return redirect('add_ttp')
-        //     ->withInput()
-        //     ->withErrors($validator);
-        // }
+        if ($validator->fails()) {
+            return redirect('add_ttp')
+            ->withInput()
+            ->withErrors($validator);
+        }
 
         $format = 'm/d/Y';
 
