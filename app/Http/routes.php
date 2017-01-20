@@ -54,10 +54,16 @@ Route::group(['middleware' => ['web']], function () {
 
         $ttpidnow = $ttpid[0]->TTP_NO;
 
+        $ttpidnowtwo = substr($ttpidnow, 0,2);
         $ttpno = intval($ttpidnow);
 
         $ttpno = ($ttpno+1);
 
+        $yearnow = substr(date("Y"),2,2);
+
+        if ($ttpidnowtwo != $yearnow){
+            $ttpno = $yearnow . "000001";
+        }
         return view('add_ttp', [
             'ttpno' => $ttpno
             ]);
@@ -69,22 +75,67 @@ Route::group(['middleware' => ['web']], function () {
      */
     Route::post('add_ttp_post', function (Request $request) {
 
-        $validator = Validator::make($request->all(), [
-            'DELIVERY_DATE' => 'required|max:255',
-            'ORIGIN_ADDRESS' => 'required|max:255',
-            'DESTINATION_ADDRESS' => 'required|max:255'
+        // $validator = Validator::make($request->all(), [
+        //     'DELIVERY_DATE' => 'required|max:255',
+        //     'ORIGIN_ADDRESS' => 'required|max:255',
+        //     'DESTINATION_ADDRESS' => 'required|max:255'
 
-            ]);
+        //     ]);
 
-        if ($validator->fails()) {
-            return redirect('add_ttp')
-            ->withInput()
-            ->withErrors($validator);
-        }
+        // if ($validator->fails()) {
+        //     return redirect('add_ttp')
+        //     ->withInput()
+        //     ->withErrors($validator);
+        // }
 
         $format = 'm/d/Y';
 
         $date = DateTime::createFromFormat($format, $request->DELIVERY_DATE);
+
+        
+
+
+        $typenow = $request->type_form;
+
+        $total_weight = 0;
+
+        if ($typenow == "coli"){
+            $ttp_packages = $request->input('coli');
+            foreach ($ttp_packages as $package) {
+                $packages = new Package;
+                $packages->TTP_NO = $request->TTP_NO;
+                $packages->ITEM = $package['NAME'];
+                $packages->QUANTITY = $package['QUANTITY'];
+                $packages->WEIGHT = $package['WEIGHT'];
+
+                $total_weight = $total_weight+$package['WEIGHT'];
+
+                $typein = $packages->TYPE_IN;
+                if ($typein == "volume"){
+                    $packages->TYPE = "VOLUME";
+                }else{
+                    $packages->TYPE = "WEIGHT";
+                }
+                // $packages->TYPE = 'VEHICLE';
+                $packages->save();
+
+            }
+        }else{
+
+            $ttp_packages = $request->input('vehicle');
+
+            foreach ($ttp_packages as $package) {
+                $packages = new Package;
+                $packages->TTP_NO = $request->TTP_NO;
+                $packages->ITEM = $package['NAME'];
+                $packages->QUANTITY = $package['QUANTITY'];
+                $packages->TYPE_VEHICLE = $package['TYPE_VEHICLE'];
+                $packages->TYPE = 'VEHICLE';
+                $total_weight = $total_weight+$package['QUANTITY'];
+                $packages->save();
+
+            }
+        }
 
         $ttp = new Ttp;
         $ttp->TTP_NO = $request->TTP_NO;
@@ -94,29 +145,15 @@ Route::group(['middleware' => ['web']], function () {
         $ttp->ORIGIN_ADDRESS = $request->ORIGIN_ADDRESS;
         $ttp->ORIGIN_CODE = $request->ORIGIN_CODE;
         $ttp->DESTINATION_ADDRESS = $request->DESTINATION_ADDRESS;
-        $ttp->DELIVERY_BY = $request->DELIVERY_BY;
-        $ttp->DELIVERY_FORM = $request->DELIVERY_FORM;
+        $ttp->DELIVERY_BY = $request->delivery_type;
+        $ttp->DELIVERY_FORM = $request->type_form;
         $ttp->DELIVERY_DETAIL = $request->DELIVERY_DETAIL;
-        $ttp->TOTAL_WEIGHT = 4;
+        $ttp->TOTAL_WEIGHT = $total_weight;
         $ttp->CREATED_BY = "Fadhiel Alie";
         $ttp->DELIVERY_STATUS = "Pending";
         $ttp->PROOF_OF_DELIVERY = "Pending";
         $ttp->save();
 
-        $ttp_packages = $request->input('group-a');
-
-        $njemak = array();
-
-        foreach ($ttp_packages as $package) {
-            $packages = new Package;
-            $packages->TTP_NO = $request->TTP_NO;
-            $packages->ITEM = $package['NAME'];
-            $packages->QUANTITY = $package['QUANTITY'];
-            $packages->TYPE_VEHICLE = $package['TYPE_VEHICLE'];
-            $packages->TYPE = 'VEHICLE';
-            $packages->save();
-            
-        }
 
         return redirect('/');
 

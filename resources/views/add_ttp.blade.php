@@ -139,7 +139,7 @@
                                 </div>
                                 <!--/row-->
                                 <div class="row">
-                                    <div class="col-md-3">
+                                    <!-- <div class="col-md-3">
                                         <div class="form-group">
                                             <label class="control-label">Delivery By</label>
                                             <select class="form-control" name="DELIVERY_BY">
@@ -150,8 +150,27 @@
                                                 <option>Option 5</option>
                                             </select>
                                         </div>
+                                    </div> -->
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="control-label">Delivery By</label>
+                                            <select class="form-control" name="delivery_type">
+                                                <option value="darat">Darat</option>
+                                                <option value="udara">Udara</option>
+                                                <option value="laut">Laut</option>
+                                            </select>
+                                        </div>
                                     </div>
                                     <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="control-label">Form</label>
+                                            <select name="type_form" class="form-control" >
+                                                <option value="vehicle">Vehicle</option>
+                                                <option value="coli">Coli</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-md-3">
                                         <div class="form-group">
                                             <label class="control-label">Form</label>
                                             <select class="form-control" name="DELIVERY_FORM">
@@ -162,7 +181,7 @@
                                                 <option>Option 5</option>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="row">
                                     <div class="col-md-3">
@@ -178,8 +197,150 @@
                                         </div>
                                     </div>
                                 </div>
-                                <h3 class="form-section">Package Info</h3>
+                                <!-- <h3 class="form-section">Package Info</h3> -->
+                                 <h3 class="form-section">Package Info</h3>
                                 <div class="row">
+                                    <div class="package-list package-vehicle">
+                                        <div class="data-list-repeater" data-repeater-list="vehicle">         
+                                            <div class="col-md-6 package-item" data-repeater-item>
+                                                <div class="portlet box blue portlet-vehicle">
+                                                    <div class="portlet-title">
+                                                        <div class="caption">
+                                                            <i class="fa fa-truck"></i>Package Vehicle </div>
+                                                        <div class="tools">
+                                                            <a href="javascript:;" class="collapse" data-original-title="" title=""> </a>
+                                                            <a href="javascript:;" class="remove" data-repeater-delete data-original-title="" title=""> </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="portlet-body">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Nama Barang</label>
+                                                                    <input type="text" id="packageName1" class="form-control" placeholder="Nama Barang" name="NAME">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Type</label>
+                                                                    <select class="form-control" name="TYPE_VEHICLE">
+                                                                        <option>Wing Box</option>
+                                                                        <option>Option 2</option>
+                                                                        <option>Option 3</option>
+                                                                        <option>Option 4</option>
+                                                                        <option>Option 5</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Quantity</label>
+                                                                    <input type="number" id="packageQuantity1" class="form-control" placeholder="Banyak Kendaraan" name="QUANTITY">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>                                                
+                                        <div class="col-xs-12">
+                                            <div class="form-group">
+                                                <button type="button" data-repeater-create class="btn blue">
+                                                    <i class="fa fa-plus"></i> Tambah Package
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="package-list package-coli" style="display: none;">
+                                        <div class="data-list-repeater" data-repeater-list="coli">         
+                                            <div class="col-md-6 package-item" data-repeater-item>
+                                                <div class="portlet box blue portlet-coli">
+                                                    <div class="portlet-title">
+                                                        <div class="caption">
+                                                            <i class="fa fa-ship"></i>Package Coli </div>
+                                                        <div class="tools">
+                                                            <a href="javascript:;" class="collapse" data-original-title="" title=""> </a>
+                                                            <a href="javascript:;" class="remove" data-repeater-delete data-original-title="" title=""> </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="portlet-body">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Nama Barang</label>
+                                                                    <input type="text" id="packageName1" class="form-control" placeholder="Nama Barang" name="NAME">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Type</label>
+                                                                    <select name="type_package" class="form-control" name="TYPE_IN">
+                                                                        <option value="actual-weight">Actual Weight</option>
+                                                                        <option value="volume">Volume</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Quantity</label>
+                                                                    <input type="text" id="packageName1" class="form-control" placeholder="Quantity" name="QUANTITY">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row section--actual-weight section--type-package">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Berat</label>
+                                                                    <input type="text" id="packageName1" class="form-control input-inline" placeholder="Berat" name="WEIGHT">
+                                                                    <span class="help-inline"> Kg </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row section--volume section--type-package" style="display: none;">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">P</label>
+                                                                    <input type="text" id="packageName1" class="form-control input-inline input-xsmall" placeholder="Panjang" >
+                                                                    <span class="help-inline"> cm </span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">L</label>
+                                                                    <input type="text" id="packageName1" class="form-control input-inline input-xsmall" placeholder="Lebar" >
+                                                                    <span class="help-inline"> cm </span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">T</label>
+                                                                    <input type="text" id="packageName1" class="form-control input-inline input-xsmall" placeholder="Tinggi" >
+                                                                    <span class="help-inline"> cm </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>                                                
+                                        <div class="col-xs-12">
+                                            <div class="form-group">
+                                                <button type="button" data-repeater-create class="btn blue">
+                                                    <i class="fa fa-plus"></i> Tambah Package
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="row">
                                     <div class="package-list">
                                         <div data-repeater-list="group-a">
                                             <div class="col-md-6 package-item" data-repeater-item>
@@ -236,7 +397,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <h3 class="form-section">Total Weight</h3>
                                 <div class="row">
                                     <div class="col-md-12">
