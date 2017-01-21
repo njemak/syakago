@@ -154,8 +154,23 @@ Route::group(['middleware' => ['web']], function () {
             }
         }
 
+        $ttpid = Ttp::orderBy('created_at', 'desc')->limit(1)->select('TTP_NO')->get();
+
+        $ttpidnow = $ttpid[0]->TTP_NO;
+
+        $ttpidnowtwo = substr($ttpidnow, 0,2);
+        $ttpno = intval($ttpidnow);
+
+        $ttpno = ($ttpno+1);
+
+        $yearnow = substr(date("Y"),2,2);
+
+        if ($ttpidnowtwo != $yearnow){
+            $ttpno = $yearnow . "000001";
+        }
+
         $ttp = new Ttp;
-        $ttp->TTP_NO = $request->TTP_NO;
+        $ttp->TTP_NO = $ttpno;
         $ttp->CUSTOMER_ID = $request->CUSTOMER_ID;
         $ttp->PROJECT_ID = $request->PROJECT_ID;
         $ttp->DELIVERY_DATE = $date;
