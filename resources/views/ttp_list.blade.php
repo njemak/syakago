@@ -27,12 +27,21 @@
                 <div class="row">
                     <div class="col-xs-2">
                         <div class="form-group">
-                            <select class="form-control"> 
+                            <select class="form-control" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);"> 
                                 @for ($year = date("Y"); $year >= 2014; $year--)
-                                    <option>{{ $year }}</option>
+                                    @if (!empty($current_year))
+                                        @if ($current_year == $year)
+                                            <option value="{{ url('ttp_list', ['year' => $year]) }}" selected>{{ $year }}</option>
+                                        @else
+                                            <option value="{{ url('ttp_list', ['year' => $year]) }}">{{ $year }}</option>
+                                        @endif
+                                    @else
+                                        <option value="{{ url('ttp_list', ['year' => $year]) }}">{{ $year }}</option>
+                                    @endif
                                 @endfor
                             </select>
-                            <!-- ONCHANGE REDIRECT RELOAD TTP($YEAR) -->
+                            <!-- ONCHANGE REDIRECT RELOAD TTP($dYEAR) -->
+                            <!-- {{ url('ttp_list', ['year' => $year]) }} -->
                         </div>
                     </div>
                     <div class="col-xs-12">

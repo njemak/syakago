@@ -178,6 +178,225 @@
                                     </div>
                                 </div>
                             </div>
+                <!-- END PAGE TITLE-->
+                <!-- END PAGE HEADER-->
+                <div class="col-md-12">
+                        <form action="{{ url('add_ttp_post')}}" method="POST" class="horizontal-form">
+                        {{ csrf_field() }}
+                            <div class="form-body">
+                                <h3 class="form-section">TTP Pricing</h3>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="control-label">Extra</label>
+                                            <label id="warningEx_Weight" style="color:red; display:none">(value is not valid)</label>
+                                            <input type="text" id="extraWeight" class="form-control" name="EXTRA_WEIGHT" value="0">
+                                        </div>
+                                    </div>
+                                   <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Rate</label>
+                                            <label id="warningEx_Rate" style="color:red; display:none">(value is not valid)</label>
+                                            <input type="text" id="RATE" class="form-control" name="RATE" value="0">
+                                            <!-- DEVELOPER NOTE: YOVIE  (14-01-2017)
+                                                DON'T FORGET BUTTON TO AUTO REFRESH RATE BASED ON CUSTOMER
+                                             -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="control-label">Gross Sales</label>
+                                            <input type="text" id="GROSS_SALES" class="form-control" name="GROSS_SALES" value="0" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <script>
+                                    var format = function(num){
+                                        var str = num.toString().replace("$", ""), parts = false, output = [], i = 1, formatted = null;
+                                        if(str.indexOf(".") > 0) {
+                                            parts = str.split(".");
+                                            str = parts[0];
+                                        }
+                                        str = str.split("").reverse();
+                                        for(var j = 0, len = str.length; j < len; j++) {
+                                            if(str[j] != ",") {
+                                                output.push(str[j]);
+                                                if(i%3 == 0 && j < (len - 1)) {
+                                                    output.push(",");
+                                                }
+                                                i++;
+                                            }
+                                        }
+                                        formatted = output.reverse().join("");
+                                        return(formatted + ((parts) ? "." + parts[1].substr(0, 2) : ""));
+                                    };
+
+                                    $(function(){
+                                        var numberRegex = /^[+-]?\d+(\.\d+)?([eE][+-]?\d+)?$/;
+                                        $("#extraWeight").keyup(function(e){
+                                            var extraWeight = parseInt($('#extraWeight').val().replace(/,/g, ''));
+                                            var RATE = parseInt($('#RATE').val().replace(/,/g, ''));
+                                            var totalWeight = parseInt($('#totalWeight').val().replace(/,/g, ''));
+                                            if(numberRegex.test(extraWeight)) {
+                                                $(this).val(format($(this).val()));
+                                                var grossSales = (totalWeight + extraWeight) * RATE; 
+                                                $('#GROSS_SALES').val(format(grossSales));
+                                                $('#extraWeight').css('border-color', '');
+                                                $('#warningEx_Weight').hide();
+                                            }
+                                            else{
+                                                $('#GROSS_SALES').val(0);
+                                                $('#warningEx_Weight').show();
+                                                $('#extraWeight').css('border-color', 'red');
+                                            }
+                                        });
+                                        $("#RATE").keyup(function(e){
+                                            var extraWeight = parseInt($('#extraWeight').val().replace(/,/g, ''));
+                                            var RATE = parseInt($('#RATE').val().replace(/,/g, ''));
+                                            var totalWeight = parseInt($('#totalWeight').val().replace(/,/g, ''));
+                                            if(numberRegex.test(RATE)) {
+                                                $(this).val(format($(this).val()));
+                                                var grossSales = (totalWeight + extraWeight) * RATE; 
+                                                $('#GROSS_SALES').val(format(grossSales));
+                                                $('#RATE').css('border-color', '');
+                                                $('#warningEx_Rate').hide();
+                                            }
+                                            else{
+                                                $('#GROSS_SALES').val(0);
+                                                $('#warningEx_Rate').show();
+                                                $('#RATE').css('border-color', 'red');
+                                            }
+                                        });
+                                        $("#discountval").keyup(function(e){
+                                            var discountvalue = parseInt($('#discountval').val().replace(/,/g, ''));
+                                            var discountpercentage = parseInt($('#discount').val().replace('%', ''));
+                                            var subtotal = parseInt($('#SUBTOTAL').val().replace(/,/g, ''));
+                                            if(numberRegex.test($(this).val().replace(/,/g, ''))) {
+                                                $(this).val(format($(this).val()));
+                                                var netSales = subtotal - (subtotal * discountpercentage / 100) - discountvalue;
+                                                $('#NETSALES').val(format(netSales));
+                                                $('#discountval').css('border-color', '');
+                                                $('#warningEx_discount').hide();
+                                            }
+                                            else{
+                                                $('#NETSALES').val(0);
+                                                $('#warningEx_discount').show();
+                                                $('#discountval').css('border-color', 'red');
+                                            }
+                                        });
+                                        $("#discount").change(function(e){
+                                            var discountvalue = parseInt($('#discountval').val().replace(/,/g, ''));
+                                            var discountpercentage = parseInt($('#discount').val().replace('%', ''));
+                                            var subtotal = parseInt($('#SUBTOTAL').val().replace(/,/g, ''));
+                                            if(numberRegex.test($(this).val().replace('%', ''))) {
+                                                var netSales = 0
+                                                if($(this).val() > 100){
+                                                    $(this).val('100%');   
+                                                }
+                                                else{
+                                                    $(this).val($(this).val() + '%');
+                                                    netSales = subtotal - (subtotal * discountpercentage / 100) - discountvalue;
+                                                }
+                                                $('#NETSALES').val(format(netSales));
+                                                $('#discountval').css('border-color', '');
+                                                $('#warningEx_discount').hide();
+                                            }
+                                            else{
+                                                $('#NETSALES').val(0);
+                                                $('#warningEx_discountpercent').show();
+                                                $('#discount').css('border-color', 'red');
+                                            }
+                                        });
+                                    });
+                                </script>
+                                <h3 class="form-section">Package Info</h3>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="portlet box blue">
+                                            <div class="portlet-title">
+                                                <div class="caption">
+                                                    <i class="fa fa-truck"></i>Package 1 </div>
+                                                <div class="tools">
+                                                    <a href="javascript:;" class="collapse" data-original-title="" title=""> </a>
+                                                    <a href="javascript:;" class="remove" data-original-title="" title=""> </a>
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Nama Barang</label>
+                                                            <input type="text" id="packageName1" class="form-control" placeholder="Nama Barang" >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Type</label>
+                                                            <select class="form-control">
+                                                                <option>Wing Box</option>
+                                                                <option>Option 2</option>
+                                                                <option>Option 3</option>
+                                                                <option>Option 4</option>
+                                                                <option>Option 5</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Quantity</label>
+                                                            <input type="number" id="packageQuantity1" class="form-control" placeholder="Banyak Kendaraan" >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <!-- DEVELOPER NOTE: YOVIE  (01-11-2016)
+                                    TOTAL WEIGHT DEPENDS ON DELIVERY TYPE? FORMULA? I FORGOT!
+                                    -->
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="control-label">Sub Total</label>
+                                            <input type="text" id="SUBTOTAL" class="form-control" name="SUBTOTAL" value="0" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="control-label">Discount</label>
+                                            <label id="warningEx_discountpercent" style="color:red; display:none">(value is not valid)</label>
+                                            <input type="text" id="discount" class="form-control" name="discount" value="0%" max="100">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Discount</label>
+                                            <label id="warningEx_discount" style="color:red; display:none">(value is not valid)</label>
+                                            <input type="text" id="discountval" class="form-control" name="discountval" value="0">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <!-- DEVELOPER NOTE: YOVIE  (01-11-2016)
+                                    TOTAL WEIGHT DEPENDS ON DELIVERY TYPE? FORMULA? I FORGOT!
+                                    -->
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="control-label">Net Sales</label>
+                                            <input type="text" id="NETSALES" class="form-control" name="NETSALES" value="0" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             @include('common.errors')
                             <div class="form-actions right">
                                 <button type="button" class="btn default">Cancel</button>
