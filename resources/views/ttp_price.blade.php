@@ -214,12 +214,12 @@
                                 </div>
                                 <script>
                                     var format = function(num){
-                                        var str = num.toString().replace("$", ""), parts = false, output = [], i = 1, formatted = null;
+                                        var str = num.toString(), parts = false, output = [], i = 1, formatted = null;
                                         if(str.indexOf(".") > 0) {
                                             parts = str.split(".");
                                             str = parts[0];
                                         }
-                                        str = str.split("").reverse();
+                                        str = str.replace(/^0+/, '').split("").reverse();
                                         for(var j = 0, len = str.length; j < len; j++) {
                                             if(str[j] != ",") {
                                                 output.push(str[j]);
