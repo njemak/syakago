@@ -297,7 +297,7 @@
             <script src="{{ URL::asset('assets/layouts/layout/scripts/layout.min.js') }}" type="text/javascript"></script>
             <script src="{{ URL::asset('assets/layouts/layout/scripts/demo.min.js') }}" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
-            <script src="{{ URL::asset('assets/syaka/scripts/syaka-min.js') }}" type="text/javascript"></script>
+            <script src="{{ URL::asset('assets/syaka/scripts/syaka.js') }}" type="text/javascript"></script>
     </body>
 </html>      
 

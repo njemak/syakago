@@ -263,83 +263,10 @@
                                 </div>
                                 
                                 <div class="row">
-                                    <div class="package-list other_charges">
+                                    <div class="other_charges">
                                         <div class="data-list-repeater" data-repeater-list="charges">         
                                             <div class="col-md-6 package-item" data-repeater-item>
                                                 <div class="portlet box blue portlet-vehicle">
-                                                    @if (count($ttp_charges) > 0)
-                                                        @foreach ($ttp_charges as $charges)
-                                                            <div class="portlet-title">
-                                                            <div class="caption">
-                                                                <i class="fa fa-truck"></i>Additional Charges </div>
-                                                            <div class="tools">
-                                                                <a href="javascript:;" class="collapse" data-original-title="" title=""> </a>
-                                                                <a href="javascript:;" class="remove" data-repeater-delete data-original-title="" title=""> </a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="portlet-body">
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <div class="form-group">
-                                                                        <label class="control-label">Description</label>
-                                                                        <input type="text" id="chargesdescription" name="chargesdescription" class="form-control" placeholder="Description" value="{{ $charges->CHARGES_DESC }}">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <div class="form-group">
-                                                                        <label class="control-label">Type</label>
-                                                                        <select id="type_charges" name="type_charges" class="form-control">
-                                                                            @if ($charges->CHARGES_TYPE == "Biaya Packing")
-                                                                                <option>Surcharge</option>
-                                                                                <option selected>Biaya Packing</option>
-                                                                                <option>Overnight</option>
-                                                                                <option>Dangerous Good</option>
-                                                                                <option>Biaya Bongkaran</option>
-                                                                            @elseif ($charges->CHARGES_TYPE == "Overnight")
-                                                                                <option>Surcharge</option>
-                                                                                <option>Biaya Packing</option>
-                                                                                <option selected>Overnight</option>
-                                                                                <option>Dangerous Good</option>
-                                                                                <option>Biaya Bongkaran</option>
-                                                                            @elseif ($charges->CHARGES_TYPE == "Dangerous Good")
-                                                                                <option>Surcharge</option>
-                                                                                <option>Biaya Packing</option>
-                                                                                <option>Overnight</option>
-                                                                                <option selected>Dangerous Good</option>
-                                                                                <option>Biaya Bongkaran</option>
-                                                                            @elseif ($charges->CHARGES_TYPE == "BBiaya Bongkaran")
-                                                                                <option>Surcharge</option>
-                                                                                <option>Biaya Packing</option>
-                                                                                <option>Overnight</option>
-                                                                                <option>Dangerous Good</option>
-                                                                                <option selected>Biaya Bongkaran</option>
-                                                                            @else
-                                                                                <option selected>Surcharge</option>
-                                                                                <option>Biaya Packing</option>
-                                                                                <option>Overnight</option>
-                                                                                <option>Dangerous Good</option>
-                                                                                <option>Biaya Bongkaran</option>
-                                                                            @endif
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <div class="form-group">
-                                                                        <label>Price</label>
-                                                                        <div class="input-group">
-                                                                            <span class="input-group-addon" >Rp</span>
-                                                                            <input type="number" id="additional_price" name="additional_price" class="form-control" value="{{ $charges->CHARGES_AMOUNT }}">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        @endforeach
-                                                    @endif
                                                     <div class="portlet-title">
                                                         <div class="caption">
                                                             <i class="fa fa-truck"></i>Additional Charges </div>
@@ -377,7 +304,7 @@
                                                                     <label>Price</label>
                                                                     <div class="input-group">
                                                                         <span class="input-group-addon" >Rp</span>
-                                                                        <input type="number" id="additional_price" name="additional_price" class="form-control" value="0">
+                                                                        <input type="text" name="additional_price" class="form-control additional_price" value='0'>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -445,22 +372,14 @@
                                 </button>
                             </div>
                         <script>
-                                    var totalextracharges = function RepeaterData() {
-                                        var size = $('.nameLabel').length;
-                                        for (i = 0; i < size; i++) {
-                                            var name = $('.nameLabel').eq(i).text();
-                                            var id = $('.IdLabel').eq(i).text();
-                                            var result = document.getElementById('result');
-                                            
-                                            result.innerText += name + "  \t " + id + "\n";
-                                        }
-                                    }
-
                                     $(function() {
-                                          $("#calculate").click( function(){
-                                                $('#SUBTOTAL').val($('#GROSS_SALES').val());
-                                               }
-                                          );
+                                        $('#calculate').click(function(){
+                                               var sum = 0;
+                                               $(".additional_price").each(function(){
+                                                   sum += +parseInt($(this).val().replace(/,/g, ''));
+                                               });
+                                               $("#SUBTOTAL").val(sum + parseInt($('#GROSS_SALES').val().replace(/,/g, '')));
+                                           })
                                     });
 
                                     var format = function(num){
@@ -579,26 +498,16 @@
                                                 $('#DISCOUNT').css('border-color', 'red');
                                             }
                                         });
-                                        // $(".additional_price").keyup(function(e){
-                                        //     var additional_price = parseInt($('.additional_price').val().replace(/,/g, ''));
-                                        //     if(numberRegex.test(additional_price)) {
-                                        //         $(this).val(format($(this).val()));
-                                        //         $('.additional_price').css('border-color', '');
-                                        //     }
-                                        //     else{
-                                        //         $('.additional_price').css('border-color', 'red');
-                                        //     }
-                                        // });
-                                        // $("input[name = 'additional_price']").keyup(function(e){
-                                        //     var additional_price = parseInt($("input[name = 'additional_price']").val().replace(/,/g, ''));
-                                        //     if(numberRegex.test(additional_price)) {
-                                        //         $(this).val(format($(this).val()));
-                                        //         $("input[name = 'additional_price']").css('border-color', '');
-                                        //     }
-                                        //     else{
-                                        //         $("input[name = 'additional_price']").css('border-color', 'red');
-                                        //     }
-                                        // });
+                                        $(".additional_price").keyup(function(e){
+                                            var additional_price = parseInt($('.additional_price').val().replace(/,/g, ''));
+                                            if(numberRegex.test(additional_price)) {
+                                                $(this).val(format($(this).val()));
+                                                $('.additional_price').css('border-color', '');
+                                            }
+                                            else{
+                                                $('.additional_price').css('border-color', 'red');
+                                            }
+                                        });
                                     });
                                 </script>
                         </form>
