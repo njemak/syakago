@@ -21,6 +21,11 @@
                 <h3 class="page-title"> Update TTP
                     <small>Lengkapi semua field untuk melanjutkan</small>
                 </h3>
+                <div class="row">
+                    <div class="col-md-12">
+
+                    </div>
+                </div>
                 <!-- END PAGE TITLE-->
                 <!-- END PAGE HEADER-->
                 <div class="row">
@@ -206,9 +211,6 @@
                                 @endif
                                 
                                 <div class="row">
-                                    <!-- DEVELOPER NOTE: YOVIE  (01-11-2016)
-                                    TOTAL WEIGHT DEPENDS ON DELIVERY TYPE? FORMULA? I FORGOT!
-                                    -->
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label class="control-label">Total Weight</label>
@@ -227,6 +229,15 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-actions right">
+                                <button type="button" class="btn default">Batal</button>
+                                <button type="submit" class="btn blue">
+                                    <i class="fa fa-check"></i> Simpan
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
                 <!-- END PAGE TITLE-->
                 <!-- END PAGE HEADER-->
                 <div class="col-md-12">
