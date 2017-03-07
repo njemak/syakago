@@ -16,6 +16,7 @@ use App\Ttp;
 use App\Package;
 use App\Customer;
 use App\Project;
+use App\Charge;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -41,7 +42,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('ttp_price/{ttp_id}', function ($ttp_id) {
 
         return view('ttp_price', [
-            'ttp_info' => Ttp::where('TTP_NO', $ttp_id)->first()
+            'ttp_info' => Ttp::where('TTP_NO', $ttp_id)->first(),
+            'ttp_packages' => Package::where('TTP_NO', $ttp_id)->get(),
+            'ttp_charges' => Charge::where('TTP_NO', $ttp_id)->get()
             // 'ttp_info' => Ttp::where('TTP_NO', $ttp_id)->get()
             ]);   
     });
@@ -218,7 +221,65 @@ Route::group(['middleware' => ['web']], function () {
 
     });
 
+    /**
+     * Add New Task
+     */
+    Route::post('add_ttp_price', function (Request $request) {
 
+        $validator = Validator::make($request->all(), [
+            'EXTRA_WEIGHT' => 'required|max:255',
+            'RATE' => 'required|max:255',
+            'GROSS_SALES' => 'required|max:255',
+            'SUBTOTAL' => 'required|max:255',
+            'NETSALES' => 'required|max:255'
+            ]);
+
+        if ($validator->fails()) {
+            return redirect('/')
+            ->withInput()
+            ->withErrors($validator);
+        }
+
+        $ttp_charges = $request->input('charges');
+        if (count($ttp_charges) > 0){
+            foreach ($ttp_charges as $charge) {
+                $charges = new Charge;
+                $charges->TTP_NO = $request->TTP_NO;
+                $charges->CHARGES_DESC = $charge['chargesdescription'];
+                $charges->CHARGES_TYPE = $charge['type_charges'];
+                $charges->CHARGES_AMOUNT = $charge['additional_price'];
+                $charges->save();
+            }
+        }
+        $rate = (int)str_replace(',', '', $request->RATE);
+        $extra_weight = (int)str_replace(',', '', $request->EXTRA_WEIGHT);
+        $gross_sales = (int)str_replace(',', '', $request->GROSS_SALES);
+        $subtotal = (int)str_replace(',', '', $request->SUBTOTAL);
+        $discount = (int)str_replace('%', '', $request->DISCOUNT);
+        $discountval = (int)str_replace(',', '', $request->DISCOUNTVAL);
+        $netsales = (int)str_replace(',', '', $request->NETSALES);
+        DB::table('ttps')
+            ->where('TTP_NO', $request->TTP_NO)
+            // ->update(['RATE' => $rate],
+            //     ['EXTRA_WEIGHT' => $extra_weight],
+            //     ['GROSS_SALES' => $gross_sales],
+            //     ['SUBTOTAL' => $subtotal],
+            //     ['DISCOUNT' => $discount],
+            //     ['DISCOUNTVAL' => $discountval],
+            //     ['TOTAL_AMOUNT' => $netsales]
+            ->update(['RATE' => $rate,
+                'EXTRA_WEIGHT' => $extra_weight,
+                'GROSS_SALES' => $gross_sales,
+                'SUBTOTAL' => $subtotal,
+                'DISCOUNT' => $discount,
+                'DISCOUNTVAL' => $discountval,
+                'TOTAL_AMOUNT' => $netsales
+                ]
+            );
+
+        return redirect('/');
+
+    });
 
     /**
      * Add New Task

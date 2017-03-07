@@ -37,7 +37,7 @@
         <script src="{{ URL::asset('assets/global/plugins/jquery.min.js') }}" type="text/javascript"></script>
         <!-- END THEME LAYOUT STYLES -->
         <!-- YOVIE ADD JQUERY  -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
         <!-- -->
         <link rel="shortcut icon" href="favicon.ico" /> </head>
     <!-- END HEAD --><!-- BEGIN HEADER -->
@@ -297,7 +297,7 @@
             <script src="{{ URL::asset('assets/layouts/layout/scripts/layout.min.js') }}" type="text/javascript"></script>
             <script src="{{ URL::asset('assets/layouts/layout/scripts/demo.min.js') }}" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
-            <script src="{{ URL::asset('assets/syaka/scripts/syaka-min.js') }}" type="text/javascript"></script>
+            <script src="{{ URL::asset('assets/syaka/scripts/syaka.js') }}" type="text/javascript"></script>
     </body>
 </html>      
 

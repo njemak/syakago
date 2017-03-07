@@ -66,12 +66,12 @@
                                                 <td>{{ $ttp->DELIVERY_DATE }}</td>
                                                 <td>{{ $ttp->ORIGIN_CODE }}</td>
                                                 <td>{{ $ttp->DESTINATION_CODE }}</td>
-                                                @if ($ttp->DELIVERY_STATUS = "Delivered")
+                                                @if ($ttp->DELIVERY_STATUS == "Delivered")
                                                     <td class="font-green-meadow">{{ $ttp->DELIVERY_STATUS }}</td>
                                                 @else
                                                     <td class="font-yellow-lemon">{{ $ttp->DELIVERY_STATUS }}</td>
                                                 @endif
-                                                @if ($ttp->PROOF_OF_DELIVERY = "Delivered")
+                                                @if ($ttp->PROOF_OF_DELIVERY == "Delivered")
                                                     <td class="font-green-meadow">{{ $ttp->PROOF_OF_DELIVERY }}</td>
                                                 @else
                                                     <td class="font-yellow-lemon">{{ $ttp->PROOF_OF_DELIVERY }}</td>
