@@ -8,9 +8,10 @@ $(document).ready(function(){
 
     $('.package-list').repeater();
 
-    $('select[name="type_package"]').change(function(){
-        $('.section--type-package').hide();
-        $('.section--' + $(this).val()).show();
+    $(".type_package_select").change(function(){
+        alert("boy");
+        $(this).closest("row").siblings('.section--type-package').hide();
+        $(this).closest("row").siblings('.section--' + $(this).val()).show();
     });
 
     var form_vehicle=   '<div class="col-md-6 package-item" data-repeater-item>\
@@ -146,6 +147,10 @@ $(document).ready(function(){
             $(".package-coli").show();
             $(".package-vehicle").hide();
             $(".package-coli [data-repeater-create]").click();
+            $(".type_package_select").change(function(){
+                $(this).closest(".row").siblings('.section--type-package').hide();
+                $(this).closest(".row").siblings('.section--' + $(this).val()).show();
+            });
         }
     });
 

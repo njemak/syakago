@@ -119,30 +119,61 @@ Route::group(['middleware' => ['web']], function () {
         $date = DateTime::createFromFormat($format, $request->DELIVERY_DATE);
 
         
+        $ttpid = Ttp::orderBy('created_at', 'desc')->limit(1)->select('TTP_NO')->get();
 
+        $ttpidnow = $ttpid[0]->TTP_NO;
+
+        $ttpidnowtwo = substr($ttpidnow, 0,2);
+        $ttpno = intval($ttpidnow);
+
+        $ttpno = ($ttpno+1);
+
+        $yearnow = substr(date("Y"),2,2);
+
+        if ($ttpidnowtwo != $yearnow){
+            $ttpno = $yearnow . "000001";
+        }
 
         $typenow = $request->type_form;
 
         $total_weight = 0;
 
+        $land_divider_string = $request->delivery_type;
+        $land_divider = 0;
+
+        if ($land_divider_string == "darat"){
+            $land_divider = 4000;
+        }else if ($land_divider_string == "laut"){
+            $land_divider = 1000000;
+        }else{
+            $land_divider = 6000;
+        }
+
         if ($typenow == "coli"){
             $ttp_packages = $request->input('coli');
+            // return $ttp_packages;
             foreach ($ttp_packages as $package) {
                 $packages = new Package;
-                $packages->TTP_NO = $request->TTP_NO;
+                $packages->TTP_NO = $ttpno;
                 $packages->ITEM = $package['NAME'];
                 $packages->QUANTITY = $package['QUANTITY'];
-                $packages->WEIGHT = $package['WEIGHT'];
-
-                $total_weight = $total_weight+$package['WEIGHT'];
-
-                $typein = $packages->TYPE_IN;
+                
+                $typein = $package['type_package'];
                 if ($typein == "volume"){
                     $packages->TYPE = "VOLUME";
+                    $packages->P = $package['P'];
+                    $packages->L = $package['L'];
+                    $packages->T = $package['T'];
+
+                    $weight_now = ($package['P']*$package['L']*$package['T'])/$land_divider;
+                    $packages->WEIGHT = $weight_now;
+                    $total_weight = $total_weight + ($weight_now*$package['QUANTITY']);
                 }else{
                     $packages->TYPE = "WEIGHT";
+                    $packages->WEIGHT = $package['WEIGHT'];
+                    $total_weight = $total_weight+ ($package['WEIGHT']*$package['QUANTITY']);
+                    
                 }
-                // $packages->TYPE = 'VEHICLE';
                 $packages->save();
 
             }
@@ -163,20 +194,7 @@ Route::group(['middleware' => ['web']], function () {
             }
         }
 
-        $ttpid = Ttp::orderBy('created_at', 'desc')->limit(1)->select('TTP_NO')->get();
-
-        $ttpidnow = $ttpid[0]->TTP_NO;
-
-        $ttpidnowtwo = substr($ttpidnow, 0,2);
-        $ttpno = intval($ttpidnow);
-
-        $ttpno = ($ttpno+1);
-
-        $yearnow = substr(date("Y"),2,2);
-
-        if ($ttpidnowtwo != $yearnow){
-            $ttpno = $yearnow . "000001";
-        }
+        
 
         $ttp = new Ttp;
         $ttp->TTP_NO = $ttpno;

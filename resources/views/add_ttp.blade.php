@@ -157,7 +157,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label class="control-label">Delivery By</label>
-                                            <select class="form-control" name="delivery_type">
+                                            <select class="form-control" name="delivery_type" id="delivery_by">
                                                 <option value="darat">Darat</option>
                                                 <option value="udara">Udara</option>
                                                 <option value="laut">Laut</option>
@@ -167,7 +167,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label class="control-label">Form</label>
-                                            <select name="type_form" class="form-control" >
+                                            <select name="type_form" class="form-control" id="type_form">
                                                 <option value="vehicle">Vehicle</option>
                                                 <option value="coli">Coli</option>
                                             </select>
@@ -203,7 +203,7 @@
                                 <!-- <h3 class="form-section">Package Info</h3> -->
                                 <h3 class="form-section">Package Info</h3>
                                 <div class="row">
-                                    <div class="package-list package-vehicle">
+                                    <div class="package-list package-vehicle" id="vehicle">
                                         <div class="data-list-repeater" data-repeater-list="vehicle">         
                                             <div class="col-md-6 package-item" data-repeater-item>
                                                 <div class="portlet box blue portlet-vehicle">
@@ -242,7 +242,7 @@
                                                                 <div class="col-md-12">
                                                                     <div class="form-group">
                                                                         <label class="control-label">Quantity</label>
-                                                                        <input type="number" id="packageQuantity1" class="form-control" placeholder="Banyak Kendaraan" name="QUANTITY">
+                                                                        <input type="number" id="packageQuantity1" class="form-control quantitiy_coli" placeholder="Banyak Kendaraan" name="QUANTITY">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -255,10 +255,14 @@
                                                     <button type="button" data-repeater-create class="btn blue">
                                                         <i class="fa fa-plus"></i> Tambah Package
                                                     </button>
+
+                                                    <button type="button" class="btn blue" id="button_weight_vehicle">
+                                                        <i class="fa fa-plus"></i> Hitung Total
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="package-list package-coli" style="display: none;">
+                                        <div class="package-list package-coli" style="display: none;" id="coli">
                                             <div class="data-list-repeater" data-repeater-list="coli">         
                                                 <div class="col-md-6 package-item" data-repeater-item>
                                                     <div class="portlet box blue portlet-coli">
@@ -283,7 +287,7 @@
                                                                     <div class="col-md-12">
                                                                         <div class="form-group">
                                                                             <label class="control-label">Type</label>
-                                                                            <select name="type_package" class="form-control" name="TYPE_IN">
+                                                                            <select name="type_package" class="form-control type_package_select" name="TYPE_IN">
                                                                                 <option value="actual-weight">Actual Weight</option>
                                                                                 <option value="volume">Volume</option>
                                                                             </select>
@@ -311,21 +315,21 @@
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
                                                                             <label class="control-label">P</label>
-                                                                            <input type="text" id="packageName1" class="form-control input-inline input-xsmall" placeholder="Panjang" >
+                                                                            <input type="text" id="packageName1" class="form-control input-inline input-xsmall" placeholder="Panjang" name="P">
                                                                             <span class="help-inline"> cm </span>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
                                                                             <label class="control-label">L</label>
-                                                                            <input type="text" id="packageName1" class="form-control input-inline input-xsmall" placeholder="Lebar" >
+                                                                            <input type="text" id="packageName1" class="form-control input-inline input-xsmall" placeholder="Lebar" name="L">
                                                                             <span class="help-inline"> cm </span>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
                                                                             <label class="control-label">T</label>
-                                                                            <input type="text" id="packageName1" class="form-control input-inline input-xsmall" placeholder="Tinggi" >
+                                                                            <input type="text" id="packageName1" class="form-control input-inline input-xsmall" placeholder="Tinggi" name="T">
                                                                             <span class="help-inline"> cm </span>
                                                                         </div>
                                                                     </div>
@@ -339,145 +343,154 @@
                                                         <button type="button" data-repeater-create class="btn blue">
                                                             <i class="fa fa-plus"></i> Tambah Package
                                                         </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                <!-- <div class="row">
-                                    <div class="package-list">
-                                        <div data-repeater-list="group-a">
-                                            <div class="col-md-6 package-item" data-repeater-item>
-                                                <div class="portlet box blue">
-                                                    <div class="portlet-title">
-                                                        <div class="caption">
-                                                            <i class="fa fa-truck"></i>Package</div>
-                                                        <div class="tools">
-                                                            <a href="javascript:;" class="collapse" data-original-title="" title=""> </a>
-                                                            <a href="javascript:;" class="remove" data-repeater-delete data-original-title="" title=""> </a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="portlet-body">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="form-group">
-                                                                    <label class="control-label">Nama Barang</label>
-                                                                    <input type="text" id="packageName1" class="form-control" placeholder="Nama Barang" name="NAME">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="form-group">
-                                                                    <label class="control-label">Type</label>
-                                                                    <select class="form-control" name="TYPE_VEHICLE">
-                                                                        <option>Wing Box</option>
-                                                                        <option>Option 2</option>
-                                                                        <option>Option 3</option>
-                                                                        <option>Option 4</option>
-                                                                        <option>Option 5</option>
-                                                                    </select>
-                                                                    <input type="hidden" class="form-control" name="TYPE" value="VEHICLE"/>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="form-group">
-                                                                    <label class="control-label">Quantity</label>
-                                                                    <input type="number" id="packageQuantity1" class="form-control" placeholder="Banyak Kendaraan" name="QUANTITY">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12">
-                                            <div class="form-group">
-                                                <button type="button" data-repeater-create class="btn blue">
-                                                    <i class="fa fa-plus"></i> Tambah Package
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
-                                <h3 class="form-section">Total Weight</h3>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label class="control-label"><strong>82Kg</strong></label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <h3 class="form-section">Notes</h3>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <ul>
-                                            <li>No SMU: 152345</li>
-                                            <li>Barang sudah dipickup pukul 09:00 AM</li>
-                                            <li>Barang sudah di bandara pukul 12:00 PM</li>
-                                            <li>Barang sudah tiba di tempat pukul 03:00 PM</li>
-                                        </ul>
-                                        <br><br>
-                                    </div>
-                                </div>
-                            </div>
-                            @include('common.errors')
 
-                            <div class="form-actions right">
-                                <button type="button" class="btn default">Batal</button>
-                                <button type="submit" class="btn blue">
-                                    <i class="fa fa-check"></i> Simpan
-                                </button>
+                                                        <button type="button" class="btn blue" id="button_weight_coli">
+                                                            <i class="fa fa-plus"></i> Hitung Total
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <h3 class="form-section" id="text_total">Total</h3>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="control-label"><strong id="total_weight_now">0</strong></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <h3 class="form-section">Notes</h3>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <ul>
+                                                    <li>No SMU: 152345</li>
+                                                    <li>Barang sudah dipickup pukul 09:00 AM</li>
+                                                    <li>Barang sudah di bandara pukul 12:00 PM</li>
+                                                    <li>Barang sudah tiba di tempat pukul 03:00 PM</li>
+                                                </ul>
+                                                <br><br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @include('common.errors')
+
+                                    <div class="form-actions right">
+                                        <button type="button" class="btn default">Batal</button>
+                                        <button type="submit" class="btn blue">
+                                            <i class="fa fa-check"></i> Simpan
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
-                        </form>
+                        </div>
                     </div>
+                    <!-- END CONTENT BODY -->
                 </div>
+                <!-- END CONTENT -->
             </div>
-            <!-- END CONTENT BODY -->
-        </div>
-        <!-- END CONTENT -->
-    </div>
-    <script type="text/javascript">
+            <script type="text/javascript">
 
-        $.get("customer_project/" + $( "#customer_select" ).val(), function(data, status){
-            var newdata = {}
-            console.log(data.length)
-            for (var i = 0;i<data.length;i++){
-                var key = data[i].PROJECT_ID;
-                newdata[key] = data[i].PROJECT_NAME
+                $.get("customer_project/" + $( "#customer_select" ).val(), function(data, status){
+                    var newdata = {}
+                    console.log(data.length)
+                    for (var i = 0;i<data.length;i++){
+                        var key = data[i].PROJECT_ID;
+                        newdata[key] = data[i].PROJECT_NAME
 
-            }
+                    }
 
-            var $select = $('#project_list');                        
-            $select.find('option').remove();                          
-            $.each(newdata,function(key, value) 
-            {
-                $select.append('<option value=' + key + '>' + value + '</option>');
-            });
-
-
-            console.log(newdata);
-        });
-
-        $( "#customer_select" ).change(function() {
-            console.log(this.value)
-            $.get("customer_project/" + this.value, function(data, status){
-                var newdata = {}
-                for (var i = 0;i<data.length;i++){
-                    var key = data[i].PROJECT_ID;
-                    newdata[key] = data[i].PROJECT_NAME
-
-                }
-
-                var $select = $('#project_list');                        
-                $select.find('option').remove();                          
-                $.each(newdata,function(key, value) 
-                {
-                    $select.append('<option value=' + key + '>' + value + '</option>');
+                    var $select = $('#project_list');                        
+                    $select.find('option').remove();                          
+                    $.each(newdata,function(key, value) 
+                    {
+                        $select.append('<option value=' + key + '>' + value + '</option>');
+                    });
                 });
-            });
-        });
-    </script>
-    <!-- END CONTAINER -->
-    @endsection
+
+                $( "#customer_select" ).change(function() {
+                    console.log(this.value)
+                    $.get("customer_project/" + this.value, function(data, status){
+                        var newdata = {}
+                        for (var i = 0;i<data.length;i++){
+                            var key = data[i].PROJECT_ID;
+                            newdata[key] = data[i].PROJECT_NAME
+
+                        }
+
+                        var $select = $('#project_list');                        
+                        $select.find('option').remove();                          
+                        $.each(newdata,function(key, value) 
+                        {
+                            $select.append('<option value=' + key + '>' + value + '</option>');
+                        });
+                    });
+                });
+                $( "#button_weight_vehicle" ).click(function() {
+
+                  var total_weight = 0;
+
+                  $($(".quantitiy_coli")).each(function (index, value){
+                    total_weight = total_weight + parseInt(value.value)
+                  });
+
+                  console.log(total_weight)
+
+                  $("#total_weight_now").text(total_weight);
+                  $("#text_total").text("Total Unit");
+
+                  // console.log(total_weight);
+              });
+
+                $( "#button_weight_coli" ).click(function() {
+                    var total_weight = 0;
+                    var name_map = {};
+
+                    var land_divider = 0
+
+                    var land_divider_string = $( "#delivery_by" ).val()
+                    console.log(land_divider_string)
+
+                    if (land_divider_string == "darat"){
+                        land_divider = 4000;
+                    }else if (land_divider_string == "laut"){
+                        land_divider = 1000000;
+                    }else {
+                        land_divider = 6000;
+                    }
+
+                    var all_coli = {}
+                    $($("[name^=coli]"))  // for all checkboxes
+                    .each(function(index, value) {  // first pass, create name mapping
+                        var name = value.name.substring(0, 4);
+                        if (name == "coli"){
+                            var keynow = value.name.substring(5,6)
+                            if (all_coli[keynow] == undefined){
+                                all_coli[keynow] = {}
+                                var valuekey = value.name.substring(8,(value.name.length-1))
+                                all_coli[keynow][valuekey] = value;
+                            }else{
+                                var valuekey = value.name.substring(8,(value.name.length-1))
+                                all_coli[keynow][valuekey] = value;
+                            }
+                        }
+                    })
+                    console.log(all_coli)
+                    for (var key in all_coli) {
+                        var objectnow = all_coli[key]
+                        console.log(objectnow.type_package.value)
+
+                        if (objectnow.type_package.value == "actual-weight"){
+                            total_weight = total_weight + ((objectnow.QUANTITY.value) * (objectnow.WEIGHT.value))
+                        }else{
+                            total_weight = total_weight + ((((objectnow.L.value) * (objectnow.P.value) * (objectnow.T.value))/land_divider) * (objectnow.QUANTITY.value))
+                        }
+                  }
+
+
+                  $("#total_weight_now").text(total_weight);
+                  $("#text_total").text("Total Berat");
+
+              });
+          </script>
+          <!-- END CONTAINER -->
+          @endsection
